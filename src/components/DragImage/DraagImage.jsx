@@ -1,9 +1,14 @@
 import React from 'react';
-import {Button} from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { makeStyles } from '@material-ui/styles';
 
+import { Storage } from 'aws-amplify';
+// import { withAuthenticator } from 'aws-amplify-react';
 
 function DragImage() {
+  const [file, setFile] = useState('');
+  const [fileName, setFileName] = useState('');
+
 
   const useStyles = makeStyles({
     dragdrop: {
@@ -15,24 +20,38 @@ function DragImage() {
       marginBottom: "0.8em",
     },
     uploadbtn: {
-      background:"#483187",
-      width:"100%"
+      background: "#483187",
+      width: "100%"
     }
   });
 
   const classes = useStyles();
 
   const handleFileChange = (e) => {
-    let files = e.target.files[0];
-    files = new File([files], 'file"name', { type: files.type });
-    files.src = URL.createObjectURL(e.target.files[0]);
+    const file = e.target.files[0];
+    setFile(file);
+    setFileName(file.name);
+
   };
 
+  const saveFile = () => {
+    console.log(fileName);
+    console.log(file);
+    Storage.put(fileName, file)
+      .then(() => {
+        console.log('file saved succesfully.');
+        setFile('');
+        setFileName('');
+      })
+      .catch(error => {
+        console.error('error while uploading file', error);
+      });
+  };
 
   return (
     <div>
       <input className={classes.dragdrop} type="file" onChange={handleFileChange} />
-        <Button className={classes.uploadbtn} >Upload</Button>
+      <Button className={classes.uploadbtn} onClick={saveFile} >Upload</Button>
     </div>
   );
 };

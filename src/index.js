@@ -3,19 +3,12 @@ import ReactDOM from 'react-dom';
 import Routes from './Routes';
 
 // config file
-import config from "./config";
+import config from "./aws-exports";
 
 // moudles
 import { Amplify } from "aws-amplify";
 
-Amplify.configure({
-  Auth: {
-    mandatorySignIn: true,
-    region: config.cognito.REGION,
-    userPoolId: config.cognito.USER_POOL_ID,
-    userPoolWebClientId: config.cognito.APP_CLIENT_ID
-  }
-});
+Amplify.configure(config);
 
 ReactDOM.render(
   <React.StrictMode>

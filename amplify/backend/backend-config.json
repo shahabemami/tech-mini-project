@@ -1,0 +1,10 @@
+{
+	"auth": {
+		"miniproject909d41ef": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"customAuth": false
+		}
+	}
+}

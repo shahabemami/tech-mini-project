@@ -1,6 +1,6 @@
 {
     "identityPoolName": "miniproject909d41ef_identitypool_909d41ef",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "minipr909d41ef",
     "userPoolName": "miniproject909d41ef_userpool_909d41ef",
     "autoVerifiedAttributes": [

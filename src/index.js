@@ -8,7 +8,6 @@ import config from "./aws-exports";
 // moudles
 import { Amplify } from "aws-amplify";
 
-Amplify.configure(config);
 
 ReactDOM.render(
   <React.StrictMode>
